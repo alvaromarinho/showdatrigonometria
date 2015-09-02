@@ -30,16 +30,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Editar Usuário"
-        android:id="@+id/buttonEditar"
+        android:text="Consultar Usuário"
+        android:id="@+id/buttonConsultar"
         android:layout_below="@+id/buttonCadastrar"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Excluir Usuário"
-        android:id="@+id/buttonExcluir"
-        android:layout_below="@+id/buttonEditar"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

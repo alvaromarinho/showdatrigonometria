@@ -9,6 +9,7 @@ public class CriarBanco extends SQLiteOpenHelper{
     protected static final String NOME_BANCO = "banco.db";
     protected static final String TABELA = "cadastro";
     protected static final int VERSAO = 1;
+    protected static final String ID = "_id";
     protected static final String NOME = "nome";
     protected static final String PERGUNTA = "pergunta";
     protected static final String ACERTOSMODULO = "acertosmodulo";
@@ -25,8 +26,8 @@ public class CriarBanco extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE "+TABELA+"(" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        String sql = "CREATE TABLE "+TABELA+" (" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 NOME + " TEXT," +
                 PERGUNTA + " INTERGER," +
                 ACERTOSMODULO + " INTERGER," +

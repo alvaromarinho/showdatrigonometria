@@ -1,6 +1,6 @@
 package com.example.alvinkalango.showdatrigonometria;
 
-/* http://codigonatela.blogspot.com.br/2013/08/android-e-sqlite.html */
+/* http://www.devmedia.com.br/criando-um-crud-com-android-studio-e-sqlite/32815 */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText Usuario;
-    Button Entrar, Cadastrar, Editar, Excluir;
+    Button Entrar, Cadastrar, Consultar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +25,20 @@ public class MainActivity extends AppCompatActivity {
         Usuario = (EditText) findViewById(R.id.usuario);
         Entrar = (Button) findViewById(R.id.buttonEntrar);
         Cadastrar = (Button) findViewById(R.id.buttonCadastrar);
-        Editar = (Button) findViewById(R.id.buttonEditar);
-        Excluir = (Button) findViewById(R.id.buttonExcluir);
+        Consultar = (Button) findViewById(R.id.buttonConsultar);
 
         Cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Cadastrar.class);
+                startActivity(intent);
+            }
+        });
+
+        Consultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Consultar.class);
                 startActivity(intent);
             }
         });
