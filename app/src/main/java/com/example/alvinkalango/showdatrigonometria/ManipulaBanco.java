@@ -20,16 +20,16 @@ public class ManipulaBanco {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(CriarBanco.NOME, nome);
-        valores.put(CriarBanco.PERGUNTA, pergunta);
-        valores.put(CriarBanco.ACERTOSMODULO, acertosmodulo);
-        valores.put(CriarBanco.PERCENTUAL1, percentual1);
-        valores.put(CriarBanco.PERCENTUAL2, percentual2);
-        valores.put(CriarBanco.PERCENTUAL3, percentual3);
-        valores.put(CriarBanco.PERCENTUAL4, percentual4);
-        valores.put(CriarBanco.PERCENTUALTOTAL, percentualtotal);
+        valores.put(banco.NOME, nome);
+        valores.put(banco.PERGUNTA, pergunta);
+        valores.put(banco.ACERTOSMODULO, acertosmodulo);
+        valores.put(banco.PERCENTUAL1, percentual1);
+        valores.put(banco.PERCENTUAL2, percentual2);
+        valores.put(banco.PERCENTUAL3, percentual3);
+        valores.put(banco.PERCENTUAL4, percentual4);
+        valores.put(banco.PERCENTUALTOTAL, percentualtotal);
 
-        resultado = db.insert(CriarBanco.TABELA, null, valores);
+        resultado = db.insertOrThrow(banco.TABELA, null, valores);
         db.close();
 
         if (resultado == -1)

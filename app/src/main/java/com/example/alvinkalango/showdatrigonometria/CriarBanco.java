@@ -25,16 +25,16 @@ public class CriarBanco extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE"+TABELA+"(" +
+        String sql = "CREATE TABLE "+TABELA+"(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                NOME + "TEXT," +
-                PERGUNTA + "INTERGER," +
-                ACERTOSMODULO + "INTERGER," +
-                PERCENTUAL1 + "INTERGER," +
-                PERCENTUAL2 + "INTERGER," +
-                PERCENTUAL3 + "INTERGER," +
-                PERCENTUAL4 + "INTERGER," +
-                PERCENTUALTOTAL + "INTERGER," +
+                NOME + " TEXT," +
+                PERGUNTA + " INTERGER," +
+                ACERTOSMODULO + " INTERGER," +
+                PERCENTUAL1 + " INTERGER," +
+                PERCENTUAL2 + " INTERGER," +
+                PERCENTUAL3 + " INTERGER," +
+                PERCENTUAL4 + " INTERGER," +
+                PERCENTUALTOTAL + " INTERGER" +
                 ")";
 
         db.execSQL(sql);

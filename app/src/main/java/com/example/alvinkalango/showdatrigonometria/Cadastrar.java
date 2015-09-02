@@ -20,16 +20,17 @@ public class Cadastrar extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        CRUD = new ManipulaBanco(getBaseContext());
         Bt_cadastrar = (Button)findViewById(R.id.bt_cadastrar);
+        CRUD = new ManipulaBanco(getBaseContext());
         ET_usuario = (EditText)findViewById(R.id.editTextUsuario);
+        usuarioString = ET_usuario.getText().toString();
 
         Bt_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usuarioString = ET_usuario.getText().toString();
-                resultado = CRUD.inserirDados(usuarioString, "0", "0", "0", "0", "0", "0", "0");
+                resultado = CRUD.inserirDados(usuarioString, "", "", "", "", "", "", "");
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }
