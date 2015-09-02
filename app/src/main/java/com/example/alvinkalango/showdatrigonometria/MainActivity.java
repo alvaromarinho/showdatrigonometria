@@ -1,6 +1,8 @@
 package com.example.alvinkalango.showdatrigonometria;
 
-/* http://www.devmedia.com.br/criando-um-crud-com-android-studio-e-sqlite/32815 */
+/* http://www.devmedia.com.br/criando-um-crud-com-android-studio-e-sqlite/32815
+*  https://github.com/CreatorB/quiz-android/tree/master/Triviality
+* */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

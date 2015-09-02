@@ -24,8 +24,8 @@ public class Consultar extends Activity{
         CRUD = new ManipulaBanco(getBaseContext());
         final Cursor Cursor = CRUD.carregarDados();
 
-        String[] nomeCampos = new String[]{CriarBanco.ID, CriarBanco.NOME};
-        int[] idViews = new int[]{R.id.idUsuario, R.id.nomeUsuario};
+        String[] nomeCampos = new String[]{CriarBanco.NOME};
+        int[] idViews = new int[]{R.id.nomeUsuario};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.usuario, Cursor, nomeCampos, idViews, 0);

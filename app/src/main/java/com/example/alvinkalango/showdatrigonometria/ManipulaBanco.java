@@ -41,9 +41,9 @@ public class ManipulaBanco {
 
     public Cursor carregarDados(){
         Cursor cursor;
-        String[] campos =  {banco.ID,banco.NOME};
+        String[] campos =  {CriarBanco.ID, CriarBanco.NOME};
         db = banco.getReadableDatabase();
-        cursor = db.query(banco.TABELA, campos, null, null, null, null, null);
+        cursor = db.query(CriarBanco.TABELA, campos, null, null, null, null, null);
 
         if(cursor!=null){
             cursor.moveToFirst();
