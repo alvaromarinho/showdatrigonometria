@@ -5,6 +5,7 @@ package com.example.alvinkalango.showdatrigonometria;
 * */
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText Usuario;
     Button Entrar, Cadastrar, Consultar;
 
     @Override
@@ -24,16 +24,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Usuario = (EditText) findViewById(R.id.usuario);
         Entrar = (Button) findViewById(R.id.buttonEntrar);
         Cadastrar = (Button) findViewById(R.id.buttonCadastrar);
         Consultar = (Button) findViewById(R.id.buttonConsultar);
+
+        Entrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Entrar.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Cadastrar.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -42,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Consultar.class);
                 startActivity(intent);
+                finish();
             }
         });
-
     }
 
     @Override

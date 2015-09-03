@@ -18,13 +18,25 @@
         </activity>
         <activity
             android:name=".Cadastrar"
-            android:label="Cadastrar"/>
+            android:label="Cadastrar" />
         <activity
             android:name=".Consultar"
-            android:label="Consultar"/>
+            android:label="Consultar" />
         <activity
             android:name=".Alterar"
-            android:label="Alterar"/>
+            android:label="Alterar" />
+        <activity
+            android:name=".Quiz"
+            android:label="@string/title_activity_quiz" >
+        </activity>
+        <activity
+            android:name=".Resultado"
+            android:label="@string/title_activity_resultado" >
+        </activity>
+        <activity
+            android:name=".Entrar"
+            android:label="@string/title_activity_entrar" >
+        </activity>
     </application>
 
 </manifest>

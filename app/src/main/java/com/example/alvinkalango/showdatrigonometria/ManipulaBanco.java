@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ManipulaBanco {
 
     private SQLiteDatabase db;
@@ -102,6 +105,56 @@ public class ManipulaBanco {
         String where = CriarBanco.ID + "=" + id;
         db = banco.getReadableDatabase();
         db.delete(CriarBanco.TABELA,where,null);
+    }
+
+    private void addQuestao() {
+        Questao q1 = new Questao("What is JP?","Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "JP", "Jasa Programmer");
+        this.addQuestao(q1);
+        Questao q2 = new Questao("where the JP place?", "Monas, Jakarta", "Gelondong, Bangun Tapan, bantul", "JP", "Gelondong, Bangun Tapan, bandul", "Gelondong, Bangun Tapan, bantul");
+        this.addQuestao(q2);
+        Questao q3 = new Questao("who is CEO of the JP?","Usman and Jack", "Jack and Rully","Rully and Usman", "JP", "Rully and Usman" );
+        this.addQuestao(q3);
+        Questao q4 = new Questao("what do you know about JP?", "JP is programmer home", "JP also realigy home", "JP", "all answer is true","all answer is true");
+        this.addQuestao(q4);
+        Questao q5 = new Questao("what do you learn in JP?","Realigy","Programming","all answer is true", "JP", "all answer is true");
+        this.addQuestao(q5);
+    }
+
+    public void addQuestao(Questao quest) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put(banco.QUESTAO, quest.getQUESTAO());
+        valores.put(banco.RESPOSTA, quest.getRESPOSTA());
+        valores.put(banco.OPTA, quest.getOPTA());
+        valores.put(banco.OPTB, quest.getOPTB());
+        valores.put(banco.OPTC, quest.getOPTC());
+        valores.put(banco.OPTD, quest.getOPTD());
+
+        db.insert(banco.TABELA2, null, valores);
+    }
+
+    public List<Questao> getTodasQuestoes() {
+        List<Questao> quesList = new ArrayList<Questao>();
+
+        String selectQuery = "SELECT  * FROM " + banco.TABELA2;
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Questao quest = new Questao();
+                quest.setID(cursor.getInt(0));
+                quest.setQUESTAO(cursor.getString(1));
+                quest.setRESPOSTA(cursor.getString(2));
+                quest.setOPTA(cursor.getString(3));
+                quest.setOPTB(cursor.getString(4));
+                quest.setOPTC(cursor.getString(5));
+                quest.setOPTD(cursor.getString(6));
+                quesList.add(quest);
+            } while (cursor.moveToNext());
+        }
+
+        return quesList;
     }
 
 }

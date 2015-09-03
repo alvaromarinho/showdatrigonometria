@@ -24,11 +24,9 @@ public class Alterar extends Activity{
         setContentView(R.layout.activity_alterar);
 
         codigo = this.getIntent().getStringExtra("codigo");
-
         CRUD = new ManipulaBanco(getBaseContext());
 
         Nome = (EditText)findViewById(R.id.editTextUsuarioED);
-
         Editar = (Button)findViewById(R.id.bt_editar);
         Deletar = (Button)findViewById(R.id.bt_deletar);
 
