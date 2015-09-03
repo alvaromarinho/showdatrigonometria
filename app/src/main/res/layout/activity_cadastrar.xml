@@ -18,4 +18,11 @@
         android:id="@+id/bt_cadastrar"
         android:layout_below="@+id/editTextUsuario"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:id="@+id/bt_voltar"
+        android:layout_below="@+id/bt_cadastrar"/>
+
 </RelativeLayout>

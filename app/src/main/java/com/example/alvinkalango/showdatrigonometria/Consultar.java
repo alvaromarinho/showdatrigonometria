@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -14,6 +15,7 @@ public class Consultar extends Activity{
 
     ManipulaBanco CRUD;
     private ListView Lista;
+    Button Bt_voltar;
     String codigo;
 
     @Override
@@ -30,6 +32,7 @@ public class Consultar extends Activity{
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.usuario, Cursor, nomeCampos, idViews, 0);
 
+        Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         Lista = (ListView) findViewById(R.id.listView);
         Lista.setAdapter(adaptador);
 
@@ -42,6 +45,13 @@ public class Consultar extends Activity{
                 Intent intent = new Intent(Consultar.this, Alterar.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        Bt_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });

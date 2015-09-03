@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ public class Entrar extends AppCompatActivity {
 
     ManipulaBanco CRUD;
     private ListView Lista;
+    Button Bt_voltar;
     String codigo;
 
     @Override
@@ -32,6 +34,7 @@ public class Entrar extends AppCompatActivity {
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.usuario, Cursor, nomeCampos, idViews, 0);
 
+        Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         Lista = (ListView) findViewById(R.id.listView);
         Lista.setAdapter(adaptador);
 
@@ -46,6 +49,13 @@ public class Entrar extends AppCompatActivity {
                 //intent.putExtra("codigo", codigo);
                 //startActivity(intent);
                 //finish();
+            }
+        });
+
+        Bt_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

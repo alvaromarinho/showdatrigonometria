@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Alterar extends Activity{
 
     EditText Nome;
-    Button Editar;
-    Button Deletar;
+    Button Bt_editar, Bt_deletar, Bt_voltar;
 
     ManipulaBanco CRUD;
     Cursor Cursor;
@@ -27,28 +27,34 @@ public class Alterar extends Activity{
         CRUD = new ManipulaBanco(getBaseContext());
 
         Nome = (EditText)findViewById(R.id.editTextUsuarioED);
-        Editar = (Button)findViewById(R.id.bt_editar);
-        Deletar = (Button)findViewById(R.id.bt_deletar);
+        Bt_editar = (Button)findViewById(R.id.bt_editar);
+        Bt_deletar = (Button)findViewById(R.id.bt_deletar);
+        Bt_voltar = (Button)findViewById(R.id.bt_voltar);
 
         Cursor = CRUD.carregarDadoById(Integer.parseInt(codigo));
         Nome.setText(Cursor.getString(Cursor.getColumnIndexOrThrow(CriarBanco.NOME)));
 
-        Editar.setOnClickListener(new View.OnClickListener() {
+        Bt_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CRUD.alterarRegistro(Integer.parseInt(codigo), Nome.getText().toString(), "", "", "", "", "", "", "");
-                Intent intent = new Intent(Alterar.this, Consultar.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Usuário editado com sucesso!", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
-        Deletar.setOnClickListener(new View.OnClickListener() {
+        Bt_deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CRUD.deletarRegistro(Integer.parseInt(codigo));
-                Intent intent = new Intent(Alterar.this, Consultar.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Usuário deletado com sucesso!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+
+        Bt_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });

@@ -25,4 +25,11 @@
         android:id="@+id/bt_deletar"
         android:layout_below="@+id/bt_editar"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:id="@+id/bt_voltar"
+        android:layout_below="@+id/bt_deletar"/>
+
 </RelativeLayout>
