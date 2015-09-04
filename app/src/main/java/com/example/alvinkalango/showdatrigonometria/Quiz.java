@@ -11,12 +11,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz extends Activity {
 
-    List<Questao> quesList;
-    Questao QuestaoAtual;
+    List<Questao> quesList = new ArrayList<>();
+    Questao QuestaoAtual = new Questao();
     ManipulaBanco Banco;
 
     TextView txtQuestao;
@@ -34,7 +35,10 @@ public class Quiz extends Activity {
 
         Banco = new ManipulaBanco(this);
         quesList = Banco.getTodasQuestoes();
-        QuestaoAtual = quesList.get(qid);
+
+        if(quesList!= null && quesList.size() != 0) {
+            QuestaoAtual = quesList.get(qid);
+        }
 
         txtQuestao=(TextView)findViewById(R.id.textView1);
         optA=(RadioButton)findViewById(R.id.radio0);
@@ -55,7 +59,7 @@ public class Quiz extends Activity {
                     pontuacao++;
 
                 }
-                if (qid < 5) {
+                if (qid < 5 && quesList!= null && quesList.size() != 0) {
                     QuestaoAtual = quesList.get(qid);
                     setQuestaoView();
                 }
