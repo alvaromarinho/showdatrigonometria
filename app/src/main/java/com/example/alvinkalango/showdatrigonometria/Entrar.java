@@ -43,7 +43,6 @@ public class Entrar extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor.moveToPosition(position);
                 codigo = Cursor.getString(Cursor.getColumnIndexOrThrow(CriarBanco.ID));
-                //Toast.makeText(getApplicationContext(), codigo, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Entrar.this, Quiz.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);

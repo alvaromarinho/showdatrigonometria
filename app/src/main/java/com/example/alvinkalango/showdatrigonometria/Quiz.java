@@ -70,9 +70,8 @@ public class Quiz extends Activity {
                 }
                 else {
                     Intent intent = new Intent(Quiz.this, Resultado.class);
-                    Bundle b = new Bundle();
-                    b.putInt("pontuacao", pontuacao);
-                    intent.putExtras(b);
+                    intent.putExtra("pontuacao", pontuacao);
+                    intent.putExtra("codigo", codigo);
                     startActivity(intent);
                 }
             }

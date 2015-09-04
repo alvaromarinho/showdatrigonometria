@@ -37,7 +37,7 @@ public class Alterar extends Activity{
         Bt_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CRUD.alterarRegistro(Integer.parseInt(codigo), Nome.getText().toString(), "", "", "", "", "", "", "");
+                CRUD.alterarRegistro(Integer.parseInt(codigo), Nome.getText().toString(), null, null, null, null, null, null, null);
                 Toast.makeText(getApplicationContext(), "Usuário editado com sucesso!", Toast.LENGTH_LONG).show();
                 finish();
             }

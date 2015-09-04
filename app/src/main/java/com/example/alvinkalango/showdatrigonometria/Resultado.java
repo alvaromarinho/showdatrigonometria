@@ -8,13 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Resultado extends AppCompatActivity {
 
+    ManipulaBanco CRUD;
+
     RatingBar bar;
     TextView resultado;
-    int pontuacao;
     Button Bt_voltar;
+
+    String codigo;
+    int pontuacao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +28,37 @@ public class Resultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
+        CRUD = new ManipulaBanco(getBaseContext());
+
+        codigo = this.getIntent().getStringExtra("codigo");
+        pontuacao = this.getIntent().getIntExtra("pontuacao", pontuacao);
+
         Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         resultado = (TextView)findViewById(R.id.textResultado);
         bar = (RatingBar)findViewById(R.id.ratingBar);
         bar.setNumStars(5);
         bar.setStepSize(0.5f);
 
-        Bundle b = getIntent().getExtras();
-        pontuacao = b.getInt("pontuacao");
+        //Toast.makeText(this, codigo, Toast.LENGTH_LONG).show();
+        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, Integer.toString(pontuacao), null, null, null, null);
+
         bar.setRating(pontuacao);
 
         switch (pontuacao) {
             case 1:
-            case 2: resultado.setText("Opps, try again bro, keep learning");
+                resultado.setText("ACERTOU 1");
+                break;
+            case 2:
+                resultado.setText("Opps, try again bro, keep learning");
                 break;
             case 3:
-            case 4:resultado.setText("Hmmmm.. maybe you have been reading a lot of JasaProgrammer quiz");
+                resultado.setText("ACERTOU 3");
                 break;
-            case 5:resultado.setText("Who are you? A student in JP???");
+            case 4:
+                resultado.setText("Hmmmm.. maybe you have been reading a lot of JasaProgrammer quiz");
+                break;
+            case 5:
+                resultado.setText("Who are you? A student in JP???");
                 break;
         }
 

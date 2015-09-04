@@ -17,31 +17,6 @@ public class ManipulaBanco {
         banco = new CriarBanco(context);
     }
 
-    public String inserirDados(String nome, String pergunta, String acertosmodulo,
-                             String percentual1, String percentual2, String percentual3, String percentual4, String percentualtotal){
-        ContentValues valores;
-        long resultado;
-
-        db = banco.getWritableDatabase();
-        valores = new ContentValues();
-        valores.put(banco.NOME, nome);
-        valores.put(banco.PERGUNTA, pergunta);
-        valores.put(banco.ACERTOSMODULO, acertosmodulo);
-        valores.put(banco.PERCENTUAL1, percentual1);
-        valores.put(banco.PERCENTUAL2, percentual2);
-        valores.put(banco.PERCENTUAL3, percentual3);
-        valores.put(banco.PERCENTUAL4, percentual4);
-        valores.put(banco.PERCENTUALTOTAL, percentualtotal);
-
-        resultado = db.insertOrThrow(banco.TABELA, null, valores);
-        db.close();
-
-        if (resultado == -1)
-            return "Erro ao inserir registro";
-        else
-            return "Registro inserido com sucesso";
-    }
-
     public Cursor carregarDados(){
         Cursor cursor;
         String[] campos =  {CriarBanco.ID, CriarBanco.NOME};
@@ -79,6 +54,31 @@ public class ManipulaBanco {
         return cursor;
     }
 
+    public String inserirDados(String nome, String pergunta, String acertosmodulo,
+                               String percentual1, String percentual2, String percentual3, String percentual4, String percentualtotal){
+        ContentValues valores;
+        long resultado;
+
+        db = banco.getWritableDatabase();
+        valores = new ContentValues();
+        if (nome != null) valores.put(banco.NOME, nome);
+        if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
+        if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
+        if (percentual1 != null) valores.put(banco.PERCENTUAL1, percentual1);
+        if (percentual2 != null) valores.put(banco.PERCENTUAL2, percentual2);
+        if (percentual3 != null) valores.put(banco.PERCENTUAL3, percentual3);
+        if (percentual4 != null) valores.put(banco.PERCENTUAL4, percentual4);
+        if (percentualtotal != null) valores.put(banco.PERCENTUALTOTAL, percentualtotal);
+
+        resultado = db.insertOrThrow(banco.TABELA, null, valores);
+        db.close();
+
+        if (resultado == -1)
+            return "Erro ao inserir registro";
+        else
+            return "Registro inserido com sucesso";
+    }
+
     public void alterarRegistro(int id, String nome, String pergunta, String acertosmodulo,
                                 String percentual1, String percentual2, String percentual3, String percentual4, String percentualtotal){
         ContentValues valores;
@@ -89,14 +89,15 @@ public class ManipulaBanco {
         where = CriarBanco.ID + "=" + id;
 
         valores = new ContentValues();
-        valores.put(banco.NOME, nome);
-        valores.put(banco.PERGUNTA, pergunta);
-        valores.put(banco.ACERTOSMODULO, acertosmodulo);
-        valores.put(banco.PERCENTUAL1, percentual1);
-        valores.put(banco.PERCENTUAL2, percentual2);
-        valores.put(banco.PERCENTUAL3, percentual3);
-        valores.put(banco.PERCENTUAL4, percentual4);
-        valores.put(banco.PERCENTUALTOTAL, percentualtotal);
+
+        if (nome != null) valores.put(banco.NOME, nome);
+        if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
+        if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
+        if (percentual1 != null) valores.put(banco.PERCENTUAL1, percentual1);
+        if (percentual2 != null) valores.put(banco.PERCENTUAL2, percentual2);
+        if (percentual3 != null) valores.put(banco.PERCENTUAL3, percentual3);
+        if (percentual4 != null) valores.put(banco.PERCENTUAL4, percentual4);
+        if (percentualtotal != null) valores.put(banco.PERCENTUALTOTAL, percentualtotal);
 
         db.update(CriarBanco.TABELA,valores,where,null);
     }
