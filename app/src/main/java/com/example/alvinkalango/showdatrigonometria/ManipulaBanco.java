@@ -113,20 +113,20 @@ public class ManipulaBanco {
 
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT count(*) FROM " + CriarBanco.TABELA2, null);
-        if (cursor.moveToFirst()) {
-            Log.d("tabela", "tem tabela");
-        }
-        else {
-            Questao q1 = new Questao("What is JP?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "JP", "Jasa Programmer");
-            this.addQuestao(q1);
-            Questao q2 = new Questao("where the JP place?", "Monas, Jakarta", "Gelondong, Bangun Tapan, bantul", "JP", "Gelondong, Bangun Tapan, bandul", "Gelondong, Bangun Tapan, bantul");
-            this.addQuestao(q2);
-            Questao q3 = new Questao("who is CEO of the JP?", "Usman and Jack", "Jack and Rully", "Rully and Usman", "JP", "Rully and Usman");
-            this.addQuestao(q3);
-            Questao q4 = new Questao("what do you know about JP?", "JP is programmer home", "JP also realigy home", "JP", "all answer is true", "all answer is true");
-            this.addQuestao(q4);
-            Questao q5 = new Questao("what do you learn in JP?", "Realigy", "Programming", "all answer is true", "JP", "all answer is true");
-            this.addQuestao(q5);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            if (cursor.getInt(0) == 0) {
+                Questao q1 = new Questao("What is JP?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "JP", "Jasa Programmer");
+                this.addQuestao(q1);
+                Questao q2 = new Questao("where the JP place?", "Monas, Jakarta", "Gelondong, Bangun Tapan, bantul", "JP", "Gelondong, Bangun Tapan, bandul", "Gelondong, Bangun Tapan, bantul");
+                this.addQuestao(q2);
+                Questao q3 = new Questao("who is CEO of the JP?", "Usman and Jack", "Jack and Rully", "Rully and Usman", "JP", "Rully and Usman");
+                this.addQuestao(q3);
+                Questao q4 = new Questao("what do you know about JP?", "JP is programmer home", "JP also realigy home", "JP", "all answer is true", "all answer is true");
+                this.addQuestao(q4);
+                Questao q5 = new Questao("what do you learn in JP?", "Realigy", "Programming", "all answer is true", "JP", "all answer is true");
+                this.addQuestao(q5);
+            }
         }
     }
 
