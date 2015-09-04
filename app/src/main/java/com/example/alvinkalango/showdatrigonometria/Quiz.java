@@ -24,6 +24,7 @@ public class Quiz extends Activity {
     RadioGroup rGroup;
     RadioButton optA, optB, optC, optD, resposta;
     Button btConfirma;
+    String codigo;
 
     int pontuacao=0;
     int qid=0;
@@ -33,7 +34,11 @@ public class Quiz extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        codigo = this.getIntent().getStringExtra("codigo");
+
         Banco = new ManipulaBanco(this);
+        Banco.addQuestao();
+
         quesList = Banco.getTodasQuestoes();
 
         if(quesList!= null && quesList.size() != 0) {

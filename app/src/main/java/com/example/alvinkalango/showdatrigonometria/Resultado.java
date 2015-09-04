@@ -4,21 +4,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Resultado extends AppCompatActivity {
 
+    RatingBar bar;
+    TextView resultado;
+    int pontuacao;
+    Button Bt_voltar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        RatingBar bar;
-        TextView resultado;
-        int pontuacao;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
+        Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         resultado = (TextView)findViewById(R.id.textResultado);
         bar = (RatingBar)findViewById(R.id.ratingBar);
         bar.setNumStars(5);
@@ -38,6 +42,13 @@ public class Resultado extends AppCompatActivity {
             case 5:resultado.setText("Who are you? A student in JP???");
                 break;
         }
+
+        Bt_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

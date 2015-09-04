@@ -107,7 +107,7 @@ public class ManipulaBanco {
         db.delete(CriarBanco.TABELA,where,null);
     }
 
-    private void addQuestao() {
+    public void addQuestao() {
         Questao q1 = new Questao("What is JP?","Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "JP", "Jasa Programmer");
         this.addQuestao(q1);
         Questao q2 = new Questao("where the JP place?", "Monas, Jakarta", "Gelondong, Bangun Tapan, bantul", "JP", "Gelondong, Bangun Tapan, bandul", "Gelondong, Bangun Tapan, bantul");
@@ -120,8 +120,9 @@ public class ManipulaBanco {
         this.addQuestao(q5);
     }
 
-    public void addQuestao(Questao quest) {
-        //SQLiteDatabase db = this.getWritableDatabase();
+    private void addQuestao(Questao quest) {
+
+        db = banco.getWritableDatabase();
         ContentValues valores = new ContentValues();
         valores.put(banco.QUESTAO, quest.getQUESTAO());
         valores.put(banco.RESPOSTA, quest.getRESPOSTA());
@@ -131,6 +132,7 @@ public class ManipulaBanco {
         valores.put(banco.OPTD, quest.getOPTD());
 
         db.insert(banco.TABELA2, null, valores);
+        db.close();
     }
 
     public List<Questao> getTodasQuestoes() {
