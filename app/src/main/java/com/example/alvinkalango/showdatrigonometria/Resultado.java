@@ -45,6 +45,9 @@ public class Resultado extends AppCompatActivity {
         bar.setRating(pontuacao);
 
         switch (pontuacao) {
+            case 0:
+                resultado.setText("MANO, TU ERROU TUDO?");
+                break;
             case 1:
                 resultado.setText("ACERTOU 1");
                 break;

@@ -126,6 +126,16 @@ public class ManipulaBanco {
                 this.addQuestao(q4);
                 Questao q5 = new Questao("what do you learn in JP?", "Realigy", "Programming", "all answer is true", "JP", "all answer is true");
                 this.addQuestao(q5);
+                Questao q6 = new Questao("quem é o negao delicia 1?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                this.addQuestao(q6);
+                Questao q7 = new Questao("quem é o negao delicia 2?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                this.addQuestao(q7);
+                Questao q8 = new Questao("quem é o negao delicia 3?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                this.addQuestao(q8);
+                Questao q9 = new Questao("quem é o negao delicia 4?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                this.addQuestao(q9);
+                Questao q10 = new Questao("quem é o negao delicia 5?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                this.addQuestao(q10);
             }
         }
     }
