@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Quiz extends Activity {
@@ -50,6 +51,8 @@ public class Quiz extends Activity {
         quesList = Banco.getTodasQuestoes();
 
         if(quesList!= null && quesList.size() != 0) {
+            Collections.shuffle(quesList.subList(0, 4));
+            Collections.shuffle(quesList.subList(5, 9));
             QuestaoAtual = quesList.get(qid);
         }
 
@@ -73,7 +76,6 @@ public class Quiz extends Activity {
                 }
 
                 if (nques == 5) {
-
                     nques = 0;
                     pontuacaoTotal = pontuacaoTotal + pontuacaoTemp;
 
