@@ -31,7 +31,9 @@ public class Quiz extends Activity {
 
     private AlertDialog Concluido;
 
-    int pontuacao = 0;
+    int pontuacaoTemp = 0;
+    int pontuacaoTotal = 0;
+    int modulo = 1;
     int nques = 1;
     int qid = 0;
 
@@ -67,16 +69,43 @@ public class Quiz extends Activity {
                 resposta = (RadioButton) findViewById(rGroup.getCheckedRadioButtonId());
 
                 if (QuestaoAtual.getRESPOSTA().equals(resposta.getText())) {
-                    pontuacao++;
+                    pontuacaoTemp++;
                 }
 
                 if (nques == 5) {
+
+                    nques = 0;
+                    pontuacaoTotal = pontuacaoTotal + pontuacaoTemp;
+
+                    switch (modulo) {
+                        case 1:
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, Integer.toString(pontuacaoTemp), null, null, null, null);
+                            break;
+                        case 2:
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, Integer.toString(pontuacaoTemp), null, null, null);
+                            break;
+                        case 3:
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, Integer.toString(pontuacaoTemp), null, null);
+                            break;
+                        case 4:
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, Integer.toString(pontuacaoTemp), null);
+                            break;
+                    }
+
+                    modulo++;
+                    pontuacaoTemp = 0;
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
                     builder.setTitle("Etapa concluída");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Concluido.dismiss();
-                            nques = 0;
+                            if (qid >= 10) {
+                                Intent intentR = new Intent(Quiz.this, Resultado.class);
+                                intentR.putExtra("pontuacao", pontuacaoTotal);
+                                intentR.putExtra("codigo", codigo);
+                                startActivity(intentR);
+                            }
                         }
                     });
                     Concluido = builder.create();
@@ -87,13 +116,6 @@ public class Quiz extends Activity {
                     nques++;
                     QuestaoAtual = quesList.get(qid);
                     setQuestaoView();
-                }
-
-                else {
-                    Intent intent = new Intent(Quiz.this, Resultado.class);
-                    intent.putExtra("pontuacao", pontuacao);
-                    intent.putExtra("codigo", codigo);
-                    startActivity(intent);
                 }
             }
         });

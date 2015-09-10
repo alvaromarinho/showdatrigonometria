@@ -40,7 +40,7 @@ public class Resultado extends AppCompatActivity {
         bar.setStepSize(0.5f);
 
         //Toast.makeText(this, codigo, Toast.LENGTH_LONG).show();
-        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, Integer.toString(pontuacao), null, null, null, null);
+        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(pontuacao));
 
         bar.setRating(pontuacao);
 
