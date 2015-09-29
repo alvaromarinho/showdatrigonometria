@@ -22,7 +22,6 @@ public class Resultado extends AppCompatActivity {
     String codigo;
     int pontuacao;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +39,6 @@ public class Resultado extends AppCompatActivity {
         bar.setNumStars(5);
         bar.setStepSize(0.5f);
 
-        //Toast.makeText(this, codigo, Toast.LENGTH_LONG).show();
         CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(pontuacao));
 
         bar.setRating(pontuacao);
@@ -69,7 +67,8 @@ public class Resultado extends AppCompatActivity {
         Bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Resultado.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

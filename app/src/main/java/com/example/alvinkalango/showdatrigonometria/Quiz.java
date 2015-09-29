@@ -33,6 +33,7 @@ public class Quiz extends Activity {
     private AlertDialog Concluido;
 
     int pontuacaoTemp = 0;
+    int percTemp;
     int pontuacaoTotal = 0;
     int modulo = 1;
     int nques = 1;
@@ -95,10 +96,10 @@ public class Quiz extends Activity {
                     }
 
                     modulo++;
-                    pontuacaoTemp = 0;
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
                     builder.setTitle("Etapa concluída");
+                    builder.setMessage("Acertos = " + pontuacaoTemp);
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Concluido.dismiss();
@@ -110,6 +111,9 @@ public class Quiz extends Activity {
                             }
                         }
                     });
+
+                    pontuacaoTemp = 0;
+
                     Concluido = builder.create();
                     Concluido.show();
                 }
