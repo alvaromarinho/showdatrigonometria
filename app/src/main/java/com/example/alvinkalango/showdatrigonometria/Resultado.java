@@ -1,5 +1,6 @@
 package com.example.alvinkalango.showdatrigonometria;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;

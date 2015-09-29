@@ -51,8 +51,8 @@ public class Quiz extends Activity {
         quesList = Banco.getTodasQuestoes();
 
         if(quesList!= null && quesList.size() != 0) {
-            Collections.shuffle(quesList.subList(0, 4));
-            Collections.shuffle(quesList.subList(5, 9));
+            Collections.shuffle(quesList.subList(0, 9));
+            Collections.shuffle(quesList.subList(10, 19));
             QuestaoAtual = quesList.get(qid);
         }
 
@@ -102,7 +102,7 @@ public class Quiz extends Activity {
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Concluido.dismiss();
-                            if (qid >= 10) {
+                            if (qid >= 20) {
                                 Intent intentR = new Intent(Quiz.this, Resultado.class);
                                 intentR.putExtra("pontuacao", pontuacaoTotal);
                                 intentR.putExtra("codigo", codigo);
@@ -114,7 +114,7 @@ public class Quiz extends Activity {
                     Concluido.show();
                 }
 
-                if (qid < 10 && quesList != null && quesList.size() != 0) {
+                if (qid < 20 && quesList != null && quesList.size() != 0) {
                     nques++;
                     QuestaoAtual = quesList.get(qid);
                     setQuestaoView();
@@ -129,7 +129,7 @@ public class Quiz extends Activity {
         optB.setText(QuestaoAtual.getOPTB());
         optC.setText(QuestaoAtual.getOPTC());
         optD.setText(QuestaoAtual.getOPTD());
-        qid++;
+        qid = qid + 2;
     }
 
     @Override
