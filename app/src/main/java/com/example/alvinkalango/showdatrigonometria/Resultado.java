@@ -15,12 +15,13 @@ public class Resultado extends AppCompatActivity {
 
     ManipulaBanco CRUD;
 
-    RatingBar bar;
     TextView resultado;
+    TextView msg;
     Button Bt_voltar;
 
     String codigo;
     int pontuacao;
+    int percTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,34 +36,16 @@ public class Resultado extends AppCompatActivity {
 
         Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         resultado = (TextView)findViewById(R.id.textResultado);
-        bar = (RatingBar)findViewById(R.id.ratingBar);
-        bar.setNumStars(5);
-        bar.setStepSize(0.5f);
+        msg = (TextView)findViewById(R.id.textMsg);
+
+        percTotal = (pontuacao*100)/10;
+        resultado.setText(percTotal + " %");
 
         CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(pontuacao));
 
-        bar.setRating(pontuacao);
-
-        switch (pontuacao) {
-            case 0:
-                resultado.setText("MANO, TU ERROU TUDO?");
-                break;
-            case 1:
-                resultado.setText("ACERTOU 1");
-                break;
-            case 2:
-                resultado.setText("Opps, try again bro, keep learning");
-                break;
-            case 3:
-                resultado.setText("ACERTOU 3");
-                break;
-            case 4:
-                resultado.setText("Hmmmm.. maybe you have been reading a lot of JasaProgrammer quiz");
-                break;
-            case 5:
-                resultado.setText("Who are you? A student in JP???");
-                break;
-        }
+        if (percTotal < 40) msg.setText("Voce precisa estudar mais!");
+        if (percTotal >= 40 && percTotal < 80 ) msg.setText("Voce esta na media!");
+        if (percTotal >= 80) msg.setText("Voce esta detendo o conhecimento da materia!");
 
         Bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -99,7 +99,8 @@ public class Quiz extends Activity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
                     builder.setTitle("Etapa concluída");
-                    builder.setMessage("Acertos = " + pontuacaoTemp);
+                    percTemp = (pontuacaoTemp*100)/5;
+                    builder.setMessage("Acertos = " + percTemp + "%");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Concluido.dismiss();
