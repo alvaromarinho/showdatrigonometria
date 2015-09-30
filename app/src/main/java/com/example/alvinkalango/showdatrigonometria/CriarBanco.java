@@ -14,11 +14,11 @@ public class CriarBanco extends SQLiteOpenHelper{
     protected static final String NOME = "nome";
     protected static final String PERGUNTA = "pergunta";
     protected static final String ACERTOSMODULO = "acertosmodulo";
-    protected static final String PERCENTUAL1 = "percentual1";
-    protected static final String PERCENTUAL2 = "percentual2";
-    protected static final String PERCENTUAL3 = "percentual3";
-    protected static final String PERCENTUAL4 = "percentual4";
-    protected static final String PERCENTUALTOTAL = "percentualtotal";
+    protected static final String MOD1 = "mod1";
+    protected static final String MOD2 = "mod2";
+    protected static final String MOD3 = "mod3";
+    protected static final String MOD4 = "mod4";
+    protected static final String TOTAL = "total";
     protected static final String QUESTAO = "questao";
     protected static final String RESPOSTA = "resposta";
     protected static final String OPTA = "opta";
@@ -31,11 +31,11 @@ public class CriarBanco extends SQLiteOpenHelper{
             NOME + " TEXT, " +
             PERGUNTA + " INTERGER, " +
             ACERTOSMODULO + " INTERGER, " +
-            PERCENTUAL1 + " INTERGER, " +
-            PERCENTUAL2 + " INTERGER, " +
-            PERCENTUAL3 + " INTERGER, " +
-            PERCENTUAL4 + " INTERGER, " +
-            PERCENTUALTOTAL + " INTERGER); ";
+            MOD1 + " INTERGER, " +
+            MOD2 + " INTERGER, " +
+            MOD3 + " INTERGER, " +
+            MOD4 + " INTERGER, " +
+            TOTAL + " INTERGER); ";
 
     private static final String sql2 = "CREATE TABLE IF NOT EXISTS " + TABELA2 + " (" +
             ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

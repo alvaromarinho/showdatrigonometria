@@ -41,7 +41,7 @@ public class Resultado extends AppCompatActivity {
         percTotal = (pontuacao*100)/10;
         resultado.setText(percTotal + " %");
 
-        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(pontuacao));
+        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(percTotal) + " %");
 
         if (percTotal < 40) msg.setText("Voce precisa estudar mais!");
         if (percTotal >= 40 && percTotal < 80 ) msg.setText("Voce esta na media!");

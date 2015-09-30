@@ -20,7 +20,7 @@ public class ManipulaBanco {
 
     public Cursor carregarDados(){
         Cursor cursor;
-        String[] campos =  {CriarBanco.ID, CriarBanco.NOME};
+        String[] campos =  {CriarBanco.ID, CriarBanco.NOME, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
         db = banco.getReadableDatabase();
         cursor = db.query(CriarBanco.TABELA, campos, null, null, null, null, null);
 
@@ -38,11 +38,11 @@ public class ManipulaBanco {
                 banco.NOME,
                 banco.PERGUNTA,
                 banco.ACERTOSMODULO,
-                banco.PERCENTUAL1,
-                banco.PERCENTUAL2,
-                banco.PERCENTUAL3,
-                banco.PERCENTUAL4,
-                banco.PERCENTUALTOTAL
+                banco.MOD1,
+                banco.MOD2,
+                banco.MOD3,
+                banco.MOD4,
+                banco.TOTAL
         };
         String where = CriarBanco.ID + "=" + id;
         db = banco.getReadableDatabase();
@@ -56,7 +56,7 @@ public class ManipulaBanco {
     }
 
     public String inserirRegistro(String nome, String pergunta, String acertosmodulo,
-                                  String percentual1, String percentual2, String percentual3, String percentual4, String percentualtotal){
+                                  String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         long resultado;
 
@@ -65,11 +65,11 @@ public class ManipulaBanco {
         if (nome != null) valores.put(banco.NOME, nome);
         if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
         if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
-        if (percentual1 != null) valores.put(banco.PERCENTUAL1, percentual1);
-        if (percentual2 != null) valores.put(banco.PERCENTUAL2, percentual2);
-        if (percentual3 != null) valores.put(banco.PERCENTUAL3, percentual3);
-        if (percentual4 != null) valores.put(banco.PERCENTUAL4, percentual4);
-        if (percentualtotal != null) valores.put(banco.PERCENTUALTOTAL, percentualtotal);
+        if (mod1 != null) valores.put(banco.MOD1, mod1);
+        if (mod2 != null) valores.put(banco.MOD2, mod2);
+        if (mod3 != null) valores.put(banco.MOD3, mod3);
+        if (mod4 != null) valores.put(banco.MOD4, mod4);
+        if (total != null) valores.put(banco.TOTAL, total);
 
         resultado = db.insertOrThrow(banco.TABELA, null, valores);
         db.close();
@@ -81,7 +81,7 @@ public class ManipulaBanco {
     }
 
     public void alterarRegistro(int id, String nome, String pergunta, String acertosmodulo,
-                                String percentual1, String percentual2, String percentual3, String percentual4, String percentualtotal){
+                                String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         String where;
 
@@ -94,11 +94,11 @@ public class ManipulaBanco {
         if (nome != null) valores.put(banco.NOME, nome);
         if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
         if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
-        if (percentual1 != null) valores.put(banco.PERCENTUAL1, percentual1);
-        if (percentual2 != null) valores.put(banco.PERCENTUAL2, percentual2);
-        if (percentual3 != null) valores.put(banco.PERCENTUAL3, percentual3);
-        if (percentual4 != null) valores.put(banco.PERCENTUAL4, percentual4);
-        if (percentualtotal != null) valores.put(banco.PERCENTUALTOTAL, percentualtotal);
+        if (mod1 != null) valores.put(banco.MOD1, mod1);
+        if (mod2 != null) valores.put(banco.MOD2, mod2);
+        if (mod3 != null) valores.put(banco.MOD3, mod3);
+        if (mod4 != null) valores.put(banco.MOD4, mod4);
+        if (total != null) valores.put(banco.TOTAL, total);
 
         db.update(CriarBanco.TABELA,valores,where,null);
     }

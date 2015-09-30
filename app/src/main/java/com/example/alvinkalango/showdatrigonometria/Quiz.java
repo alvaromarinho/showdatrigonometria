@@ -79,19 +79,20 @@ public class Quiz extends Activity {
                 if (nques == 5) {
                     nques = 0;
                     pontuacaoTotal = pontuacaoTotal + pontuacaoTemp;
+                    percTemp = (pontuacaoTemp*100)/5;
 
                     switch (modulo) {
                         case 1:
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, Integer.toString(pontuacaoTemp), null, null, null, null);
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, Integer.toString(percTemp) + " %", null, null, null, null);
                             break;
                         case 2:
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, Integer.toString(pontuacaoTemp), null, null, null);
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, Integer.toString(percTemp) + " %", null, null, null);
                             break;
                         case 3:
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, Integer.toString(pontuacaoTemp), null, null);
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, Integer.toString(percTemp) + " %", null, null);
                             break;
                         case 4:
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, Integer.toString(pontuacaoTemp), null);
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, Integer.toString(percTemp) + " %", null);
                             break;
                     }
 
@@ -99,7 +100,7 @@ public class Quiz extends Activity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
                     builder.setTitle("Etapa concluída");
-                    percTemp = (pontuacaoTemp*100)/5;
+
                     builder.setMessage("Acertos = " + percTemp + "%");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

@@ -26,11 +26,10 @@ public class Consultar extends Activity{
         CRUD = new ManipulaBanco(getBaseContext());
         final Cursor Cursor = CRUD.carregarDados();
 
-        String[] nomeCampos = new String[]{CriarBanco.NOME};
-        int[] idViews = new int[]{R.id.nomeUsuario};
+        String[] nomeCampos = new String[]{CriarBanco.NOME, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
+        int[] idViews = new int[]{R.id.nomeUsuario, R.id.textM1, R.id.textM2, R.id.textM3, R.id.textM4, R.id.textMT};
 
-        SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.usuario, Cursor, nomeCampos, idViews, 0);
+        SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(), R.layout.usuario_consultar, Cursor, nomeCampos, idViews, 0);
 
         Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         Lista = (ListView) findViewById(R.id.listView);

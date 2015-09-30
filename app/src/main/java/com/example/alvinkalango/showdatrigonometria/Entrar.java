@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class Entrar extends AppCompatActivity {
 
@@ -32,7 +31,7 @@ public class Entrar extends AppCompatActivity {
         int[] idViews = new int[]{R.id.nomeUsuario};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.usuario, Cursor, nomeCampos, idViews, 0);
+                R.layout.usuario_entrar, Cursor, nomeCampos, idViews, 0);
 
         Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         Lista = (ListView) findViewById(R.id.listView);
