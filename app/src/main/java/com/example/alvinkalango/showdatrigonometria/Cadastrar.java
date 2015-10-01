@@ -29,7 +29,7 @@ public class Cadastrar extends Activity{
             @Override
             public void onClick(View v) {
                 usuarioString = ET_usuario.getText().toString();
-                resultado = CRUD.inserirRegistro(usuarioString, "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado");
+                resultado = CRUD.inserirRegistro(usuarioString, "0", "0", "0", "0", "0", "0");
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
                 finish();
             }

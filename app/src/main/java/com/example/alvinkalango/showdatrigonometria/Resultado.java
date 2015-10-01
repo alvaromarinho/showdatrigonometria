@@ -1,6 +1,7 @@
 package com.example.alvinkalango.showdatrigonometria;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +20,8 @@ public class Resultado extends AppCompatActivity {
     TextView msg;
     Button Bt_voltar;
 
+    Cursor cursor;
     String codigo;
-    int pontuacao;
     int percTotal;
 
     @Override
@@ -32,16 +33,15 @@ public class Resultado extends AppCompatActivity {
         CRUD = new ManipulaBanco(getBaseContext());
 
         codigo = this.getIntent().getStringExtra("codigo");
-        pontuacao = this.getIntent().getIntExtra("pontuacao", pontuacao);
 
         Bt_voltar = (Button) findViewById(R.id.bt_voltar);
         resultado = (TextView)findViewById(R.id.textResultado);
         msg = (TextView)findViewById(R.id.textMsg);
 
-        percTotal = (pontuacao*100)/10;
-        resultado.setText(percTotal + " %");
+        cursor = CRUD.carregarDadoById(Integer.parseInt(codigo));
+        percTotal = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.TOTAL));
 
-        CRUD.alterarRegistro(Integer.parseInt(codigo), null, null, null, null, null, null, null, Integer.toString(percTotal) + " %");
+        resultado.setText(percTotal + " %");
 
         if (percTotal < 40) msg.setText("Voce precisa estudar mais!");
         if (percTotal >= 40 && percTotal < 80 ) msg.setText("Voce esta na media!");
@@ -54,7 +54,6 @@ public class Resultado extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

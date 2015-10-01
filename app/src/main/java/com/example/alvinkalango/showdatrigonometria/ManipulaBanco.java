@@ -20,7 +20,7 @@ public class ManipulaBanco {
 
     public Cursor carregarDados(){
         Cursor cursor;
-        String[] campos =  {CriarBanco.ID, CriarBanco.NOME, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
+        String[] campos =  {CriarBanco.ID, CriarBanco.NOME, CriarBanco.MODULO, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
         db = banco.getReadableDatabase();
         cursor = db.query(CriarBanco.TABELA, campos, null, null, null, null, null);
 
@@ -36,8 +36,7 @@ public class ManipulaBanco {
         String[] campos = {
                 banco.ID,
                 banco.NOME,
-                banco.PERGUNTA,
-                banco.ACERTOSMODULO,
+                banco.MODULO,
                 banco.MOD1,
                 banco.MOD2,
                 banco.MOD3,
@@ -55,7 +54,7 @@ public class ManipulaBanco {
         return cursor;
     }
 
-    public String inserirRegistro(String nome, String pergunta, String acertosmodulo,
+    public String inserirRegistro(String nome, String modulo,
                                   String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         long resultado;
@@ -63,8 +62,7 @@ public class ManipulaBanco {
         db = banco.getWritableDatabase();
         valores = new ContentValues();
         if (nome != null) valores.put(banco.NOME, nome);
-        if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
-        if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
+        if (modulo != null) valores.put(banco.MODULO, modulo);
         if (mod1 != null) valores.put(banco.MOD1, mod1);
         if (mod2 != null) valores.put(banco.MOD2, mod2);
         if (mod3 != null) valores.put(banco.MOD3, mod3);
@@ -80,7 +78,7 @@ public class ManipulaBanco {
             return "Registro inserido com sucesso";
     }
 
-    public void alterarRegistro(int id, String nome, String pergunta, String acertosmodulo,
+    public void alterarRegistro(int id, String nome, String modulo,
                                 String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         String where;
@@ -92,8 +90,7 @@ public class ManipulaBanco {
         valores = new ContentValues();
 
         if (nome != null) valores.put(banco.NOME, nome);
-        if (pergunta != null) valores.put(banco.PERGUNTA, pergunta);
-        if (acertosmodulo != null) valores.put(banco.ACERTOSMODULO, acertosmodulo);
+        if (modulo != null) valores.put(banco.MODULO, modulo);
         if (mod1 != null) valores.put(banco.MOD1, mod1);
         if (mod2 != null) valores.put(banco.MOD2, mod2);
         if (mod3 != null) valores.put(banco.MOD3, mod3);
@@ -116,46 +113,86 @@ public class ManipulaBanco {
         if (cursor != null) {
             cursor.moveToFirst();
             if (cursor.getInt(0) == 0) {
-                Questao q1 = new Questao("quem é o negao delicia 1?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q1 = new Questao("Pergunta 1?", "Jalur Pesawat", "chicle", "Jasa Programmer", "JP", "chicle");
                 this.addQuestao(q1);
-                Questao q2 = new Questao("quem é o negao delicia 2?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q2 = new Questao("Pergunta 2?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q2);
-                Questao q3 = new Questao("quem é o negao delicia 3?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q3 = new Questao("Pergunta 3?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q3);
-                Questao q4 = new Questao("quem é o negao delicia 4?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q4 = new Questao("Pergunta 4?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q4);
-                Questao q5 = new Questao("quem é o negao delicia 5?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q5 = new Questao("Pergunta 5?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q5);
-                Questao q6 = new Questao("quem é o negao delicia 6?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q6 = new Questao("Pergunta 6?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q6);
-                Questao q7 = new Questao("quem é o negao delicia 7?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q7 = new Questao("Pergunta 7?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q7);
-                Questao q8 = new Questao("quem é o negao delicia 8?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q8 = new Questao("Pergunta 8?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q8);
-                Questao q9 = new Questao("quem é o negao delicia 9?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q9 = new Questao("Pergunta 9?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q9);
-                Questao q10 = new Questao("quem é o negao delicia 10?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q10 = new Questao("Pergunta 10?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q10);
-                Questao q11 = new Questao("quem é o negao delicia 11?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q11 = new Questao("Pergunta 11?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q11);
-                Questao q12 = new Questao("quem é o negao delicia 12?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q12 = new Questao("Pergunta 12?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q12);
-                Questao q13 = new Questao("quem é o negao delicia 13?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q13 = new Questao("Pergunta 13?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q13);
-                Questao q14 = new Questao("quem é o negao delicia 14?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q14 = new Questao("Pergunta 14?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q14);
-                Questao q15 = new Questao("quem é o negao delicia 15?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q15 = new Questao("Pergunta 15?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q15);
-                Questao q16 = new Questao("quem é o negao delicia 16?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q16 = new Questao("Pergunta 16?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q16);
-                Questao q17 = new Questao("quem é o negao delicia 17?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q17 = new Questao("Pergunta 17?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q17);
-                Questao q18 = new Questao("quem é o negao delicia 18?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q18 = new Questao("Pergunta 18?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q18);
-                Questao q19 = new Questao("quem é o negao delicia 19?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q19 = new Questao("Pergunta 19?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q19);
-                Questao q20 = new Questao("quem é o negao delicia 20?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "kalango", "kalango");
+                Questao q20 = new Questao("Pergunta 20?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
                 this.addQuestao(q20);
+                Questao q21 = new Questao("Pergunta 21?", "Jalur Pesawat", "chicle", "Jasa Programmer", "JP", "chicle");
+                this.addQuestao(q21);
+                Questao q22 = new Questao("Pergunta 22?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q22);
+                Questao q23 = new Questao("Pergunta 23?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q23);
+                Questao q24 = new Questao("Pergunta 24?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q24);
+                Questao q25 = new Questao("Pergunta 25?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q25);
+                Questao q26 = new Questao("Pergunta 26?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q26);
+                Questao q27 = new Questao("Pergunta 27?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q27);
+                Questao q28 = new Questao("Pergunta 28?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q28);
+                Questao q29 = new Questao("Pergunta 29?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q29);
+                Questao q30 = new Questao("Pergunta 30?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q30);
+                Questao q31 = new Questao("Pergunta 31?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q31);
+                Questao q32 = new Questao("Pergunta 32?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q32);
+                Questao q33 = new Questao("Pergunta 33?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q33);
+                Questao q34 = new Questao("Pergunta 34?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q34);
+                Questao q35 = new Questao("Pergunta 35?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q35);
+                Questao q36 = new Questao("Pergunta 36?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q36);
+                Questao q37 = new Questao("Pergunta 37?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q37);
+                Questao q38 = new Questao("Pergunta 38?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q38);
+                Questao q39 = new Questao("Pergunta 39?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q39);
+                Questao q40 = new Questao("Pergunta 40?", "Jalur Pesawat", "Jack sParrow", "Jasa Programmer", "chicle", "chicle");
+                this.addQuestao(q40);
             }
         }
     }
