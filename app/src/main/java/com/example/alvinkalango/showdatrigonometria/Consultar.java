@@ -1,17 +1,16 @@
 package com.example.alvinkalango.showdatrigonometria;
 
-import android.app.Activity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class Consultar extends Activity{
+public class Consultar extends AppCompatActivity {
 
     ManipulaBanco CRUD;
     private ListView Lista;

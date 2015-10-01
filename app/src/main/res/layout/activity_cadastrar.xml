@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome de Usuario"
-        android:id="@+id/editTextUsuario" />
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome de Usuario"
+            android:id="@+id/editTextUsuario" />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
@@ -25,4 +33,4 @@
         android:id="@+id/bt_voltar"
         android:layout_below="@+id/bt_cadastrar"/>
 
-</RelativeLayout>
+</LinearLayout>

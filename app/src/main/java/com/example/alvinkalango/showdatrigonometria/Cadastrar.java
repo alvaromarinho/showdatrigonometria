@@ -1,13 +1,13 @@
 package com.example.alvinkalango.showdatrigonometria;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Cadastrar extends Activity{
+public class Cadastrar extends AppCompatActivity  {
 
     ManipulaBanco CRUD;
     Button Bt_cadastrar, Bt_voltar;

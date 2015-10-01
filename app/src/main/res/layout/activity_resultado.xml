@@ -5,39 +5,61 @@
     android:orientation="vertical"
     tools:context="com.example.alvinkalango.showdatrigonometria.Resultado">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Parabéns!"
-        android:id="@+id/titulo"
-        android:layout_gravity="center_horizontal" />
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/subtitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.005"
-        android:text="Você concluiu o Show da Trigonometria!"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Parabéns!"
+            android:layout_weight="1"
+            android:id="@+id/titulo" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_weight="0.002"
-        android:text="Seu aproveitamento foi de:"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/subtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você concluiu o Show da Trigonometria!"
+            android:layout_weight="1" />
 
-    <TextView
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="8"
+            android:text="Seu aproveitamento foi de:"
+            android:id="@+id/textView"
+            android:gravity="bottom" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_weight="0.02"
-        android:text="Large Text"
-        android:id="@+id/textResultado"
-        android:layout_gravity="center_horizontal" />
+        android:layout_weight="2"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textResultado" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" %"
+            android:id="@+id/textView10" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,8 +67,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textMsg"
-        android:layout_weight="0.06"
+        android:layout_weight="3"
         android:layout_gravity="center_horizontal" />
+
+
 
     <Button
         android:layout_width="match_parent"

@@ -6,14 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -101,28 +98,31 @@ public class Quiz extends Activity {
                             mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                             mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                             T = (percTemp + mod2 + mod3 + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "2", Integer.toString(percTemp) + " %", null, null, null, Integer.toString(T) + " %");
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "2", Integer.toString(percTemp), null, null, null, Integer.toString(T));
                             break;
                         case 2:
+                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
                             mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                             mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                             mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                             T = (mod1 + percTemp + mod3 + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "3", null, Integer.toString(percTemp) + " %", null, null, Integer.toString(T) + " %");
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "3", null, Integer.toString(percTemp), null, null, Integer.toString(T));
                             break;
                         case 3:
+                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
                             mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                             mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
                             mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                             T = (mod1 + mod2 + percTemp + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "4", null, null, Integer.toString(percTemp) + " %", null, Integer.toString(T) + " %");
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "4", null, null, Integer.toString(percTemp), null, Integer.toString(T));
                             break;
                         case 4:
+                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
                             mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                             mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
                             mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                             T = (mod1 + mod2 + mod3 + percTemp)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "0", null, null, null, Integer.toString(percTemp) + " %", Integer.toString(T) + " %");
+                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "0", null, null, null, Integer.toString(percTemp), Integer.toString(T));
                             break;
                     }
 
@@ -190,20 +190,4 @@ public class Quiz extends Activity {
         alertDialog.show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_quiz, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
