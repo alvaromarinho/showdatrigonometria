@@ -64,7 +64,7 @@ public class Entrar extends AppCompatActivity {
                     });
                     adBuilder.setNegativeButton("Não (Novo Jogo)", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            CRUD.alterarRegistro(Integer.parseInt(codigo), null, "0", "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado", "Nao realizado");
+                            CRUD.alterarRegistro(Integer.parseInt(codigo), null, "0", "0", "0", "0", "0", "0");
                             Intent intent = new Intent(Entrar.this, Quiz.class);
                             intent.putExtra("codigo", codigo);
                             startActivity(intent);
