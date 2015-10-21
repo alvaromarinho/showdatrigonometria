@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -80,79 +82,87 @@ public class Quiz extends Activity {
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 rGroup = (RadioGroup) findViewById(R.id.radioGroup1);
                 resposta = (RadioButton) findViewById(rGroup.getCheckedRadioButtonId());
 
-                if (QuestaoAtual.getRESPOSTA().equals(resposta.getText())) {
-                    pontuacaoTemp++;
-                }
-
-                if (nques == 5) {
-                    nques = 0;
-                    percTemp = (pontuacaoTemp*100)/5;
-
-                    switch (modulo) {
-                        case 1:
-                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
-                            mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
-                            mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
-                            mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
-                            T = (percTemp + mod2 + mod3 + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "2", Integer.toString(percTemp), null, null, null, Integer.toString(T));
-                            break;
-                        case 2:
-                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
-                            mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
-                            mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
-                            mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
-                            T = (mod1 + percTemp + mod3 + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "3", null, Integer.toString(percTemp), null, null, Integer.toString(T));
-                            break;
-                        case 3:
-                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
-                            mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
-                            mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
-                            mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
-                            T = (mod1 + mod2 + percTemp + mod4)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "4", null, null, Integer.toString(percTemp), null, Integer.toString(T));
-                            break;
-                        case 4:
-                            cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
-                            mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
-                            mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
-                            mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
-                            T = (mod1 + mod2 + mod3 + percTemp)/4;
-                            Banco.alterarRegistro(Integer.parseInt(codigo), null, "0", null, null, null, Integer.toString(percTemp), Integer.toString(T));
-                            break;
+                if(resposta != null) {
+                    if (QuestaoAtual.getRESPOSTA().equals(resposta.getText())) {
+                        pontuacaoTemp++;
                     }
 
-                    modulo++;
+                    if (nques == 5) {
+                        nques = 0;
+                        percTemp = (pontuacaoTemp * 100) / 5;
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
-                    builder.setTitle("Etapa concluída");
-
-                    builder.setMessage("Acertos: " + percTemp + "%");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Concluido.dismiss();
-                            if (qid >= 40) {
-                                Intent intentR = new Intent(Quiz.this, Resultado.class);
-                                intentR.putExtra("codigo", codigo);
-                                startActivity(intentR);
-                            }
+                        switch (modulo) {
+                            case 1:
+                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
+                                mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
+                                mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
+                                T = (percTemp + mod2 + mod3 + mod4) / 4;
+                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "2", Integer.toString(percTemp), null, null, null, Integer.toString(T));
+                                break;
+                            case 2:
+                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
+                                mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
+                                mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
+                                T = (mod1 + percTemp + mod3 + mod4) / 4;
+                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "3", null, Integer.toString(percTemp), null, null, Integer.toString(T));
+                                break;
+                            case 3:
+                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
+                                mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
+                                mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
+                                T = (mod1 + mod2 + percTemp + mod4) / 4;
+                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "4", null, null, Integer.toString(percTemp), null, Integer.toString(T));
+                                break;
+                            case 4:
+                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
+                                mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
+                                mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
+                                T = (mod1 + mod2 + mod3 + percTemp) / 4;
+                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "0", null, null, null, Integer.toString(percTemp), Integer.toString(T));
+                                break;
                         }
-                    });
 
-                    pontuacaoTemp = 0;
+                        modulo++;
 
-                    Concluido = builder.create();
-                    Concluido.show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
+                        builder.setTitle("Etapa concluída");
+
+                        builder.setMessage("Acertos: " + percTemp + "%");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Concluido.dismiss();
+                                if (qid >= 40) {
+                                    Intent intentR = new Intent(Quiz.this, Resultado.class);
+                                    intentR.putExtra("codigo", codigo);
+                                    startActivity(intentR);
+                                }
+                            }
+                        });
+
+                        pontuacaoTemp = 0;
+
+                        Concluido = builder.create();
+                        Concluido.show();
+                    }
+
+                    if (qid < 40 && quesList != null && quesList.size() != 0) {
+                        nques++;
+                        QuestaoAtual = quesList.get(qid);
+                        setQuestaoView();
+                    }
+                    rGroup.clearCheck();
                 }
 
-                if (qid < 40 && quesList != null && quesList.size() != 0) {
-                    nques++;
-                    QuestaoAtual = quesList.get(qid);
-                    setQuestaoView();
+                else{
+                    Toast.makeText(Quiz.this, "Favor selecionar uma opção!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
