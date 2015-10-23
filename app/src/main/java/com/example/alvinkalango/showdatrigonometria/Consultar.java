@@ -15,7 +15,7 @@ public class Consultar extends AppCompatActivity {
     ManipulaBanco CRUD;
     private ListView Lista;
     Button Bt_voltar;
-    String codigo;
+    int codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class Consultar extends AppCompatActivity {
 
         CRUD = new ManipulaBanco(getBaseContext());
         final Cursor Cursor = CRUD.carregarDados();
-
         String[] nomeCampos = new String[]{CriarBanco.NOME, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
         int[] idViews = new int[]{R.id.nomeUsuario, R.id.textM1, R.id.textM2, R.id.textM3, R.id.textM4, R.id.textMT};
 
@@ -39,7 +38,7 @@ public class Consultar extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Cursor.moveToPosition(position);
-                codigo = Cursor.getString(Cursor.getColumnIndexOrThrow(CriarBanco.ID));
+                codigo = Cursor.getInt(Cursor.getColumnIndexOrThrow(CriarBanco.ID));
                 Intent intent = new Intent(Consultar.this, Alterar.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);

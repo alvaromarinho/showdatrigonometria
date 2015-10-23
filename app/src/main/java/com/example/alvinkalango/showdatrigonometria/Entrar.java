@@ -15,10 +15,11 @@ import android.widget.SimpleCursorAdapter;
 public class Entrar extends AppCompatActivity {
 
     ManipulaBanco CRUD;
-    private ListView Lista;
+    ListView Lista;
+    AlertDialog VerificaJogo;
+
     Button Bt_voltar;
-    String codigo;
-    private AlertDialog VerificaJogo;
+    int codigo;
     Cursor cursor;
     int nmodulo;
 
@@ -44,9 +45,9 @@ public class Entrar extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor.moveToPosition(position);
-                codigo = Cursor.getString(Cursor.getColumnIndexOrThrow(CriarBanco.ID));
+                codigo = Cursor.getInt(Cursor.getColumnIndexOrThrow(CriarBanco.ID));
 
-                cursor = CRUD.carregarDadoById(Integer.parseInt(codigo));
+                cursor = CRUD.carregarDadoById(codigo);
                 nmodulo = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MODULO));
 
                 if (nmodulo != 0) {
@@ -64,7 +65,7 @@ public class Entrar extends AppCompatActivity {
                     });
                     adBuilder.setNegativeButton("Não (Novo Jogo)", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            CRUD.alterarRegistro(Integer.parseInt(codigo), null, "0", "0", "0", "0", "0", "0");
+                            CRUD.alterarRegistro(codigo, null, "0", "0", "0", "0", "0", "0");
                             Intent intent = new Intent(Entrar.this, Quiz.class);
                             intent.putExtra("codigo", codigo);
                             startActivity(intent);

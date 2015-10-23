@@ -1,5 +1,6 @@
 package com.example.alvinkalango.showdatrigonometria;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,14 +16,14 @@ public class Alterar extends AppCompatActivity {
 
     ManipulaBanco CRUD;
     Cursor Cursor;
-    String codigo;
+    int codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar);
 
-        codigo = this.getIntent().getStringExtra("codigo");
+        codigo = this.getIntent().getIntExtra("codigo", 0);
         CRUD = new ManipulaBanco(getBaseContext());
 
         Nome = (EditText)findViewById(R.id.editTextUsuarioED);
@@ -30,14 +31,16 @@ public class Alterar extends AppCompatActivity {
         Bt_deletar = (Button)findViewById(R.id.bt_deletar);
         Bt_voltar = (Button)findViewById(R.id.bt_voltar);
 
-        Cursor = CRUD.carregarDadoById(Integer.parseInt(codigo));
+        Cursor = CRUD.carregarDadoById(codigo);
         Nome.setText(Cursor.getString(Cursor.getColumnIndexOrThrow(CriarBanco.NOME)));
 
         Bt_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CRUD.alterarRegistro(Integer.parseInt(codigo), Nome.getText().toString(), null, null, null, null, null, null);
+                CRUD.alterarRegistro(codigo, Nome.getText().toString(), null, null, null, null, null, null);
                 Toast.makeText(getApplicationContext(), "Usuário editado com sucesso!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Alterar.this, Consultar.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -45,8 +48,10 @@ public class Alterar extends AppCompatActivity {
         Bt_deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CRUD.deletarRegistro(Integer.parseInt(codigo));
+                CRUD.deletarRegistro(codigo);
                 Toast.makeText(getApplicationContext(), "Usuário deletado com sucesso!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Alterar.this, Consultar.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -54,6 +59,8 @@ public class Alterar extends AppCompatActivity {
         Bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Alterar.this, Consultar.class);
+                startActivity(intent);
                 finish();
             }
         });

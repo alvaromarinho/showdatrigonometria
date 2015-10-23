@@ -21,8 +21,8 @@ public class Quiz extends Activity {
 
     List<Questao> quesList;
     Questao QuestaoAtual = new Questao();
-    ManipulaBanco Banco;
-    String codigo;
+    ManipulaBanco CRUD;
+    int codigo;
     Cursor cursor;
 
     TextView txtQuestao;
@@ -30,7 +30,7 @@ public class Quiz extends Activity {
     RadioButton optA, optB, optC, optD, resposta;
     Button btConfirma;
 
-    private AlertDialog Concluido, alertDialog;
+    AlertDialog Concluido, alertDialog;
 
     int pontuacaoTemp = 0, percTemp, modulo = 1, nques = 1, qid = 0, nmodulo, mod1, mod2, mod3, mod4, T;
 
@@ -40,20 +40,20 @@ public class Quiz extends Activity {
         setContentView(R.layout.activity_quiz);
 
         quesList = new ArrayList<>();
-        Banco = new ManipulaBanco(this);
-        codigo = this.getIntent().getStringExtra("codigo");
+        CRUD = new ManipulaBanco(this);
+        codigo = this.getIntent().getIntExtra("codigo", 0);
 
-        Banco.addQuestao();
-        quesList = Banco.getTodasQuestoes();
+        CRUD.addQuestao();
+        quesList = CRUD.getTodasQuestoes();
 
-        txtQuestao=(TextView)findViewById(R.id.textView1);
-        optA=(RadioButton)findViewById(R.id.radio0);
-        optB=(RadioButton)findViewById(R.id.radio1);
-        optC=(RadioButton)findViewById(R.id.radio2);
-        optD=(RadioButton)findViewById(R.id.radio3);
-        btConfirma=(Button)findViewById(R.id.buttonConfirma);
+        txtQuestao = (TextView)findViewById(R.id.textView1);
+        optA = (RadioButton)findViewById(R.id.radio0);
+        optB = (RadioButton)findViewById(R.id.radio1);
+        optC = (RadioButton)findViewById(R.id.radio2);
+        optD = (RadioButton)findViewById(R.id.radio3);
+        btConfirma = (Button)findViewById(R.id.buttonConfirma);
 
-        cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+        cursor = CRUD.carregarDadoById(codigo);
         nmodulo = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MODULO));
 
         if (nmodulo == 2) {
@@ -69,7 +69,7 @@ public class Quiz extends Activity {
             modulo = modulo + 3;
         }
 
-        if(quesList!= null && quesList.size() != 0) {
+        if(quesList != null && quesList.size() != 0) {
             Collections.shuffle(quesList.subList(0, 9));
             Collections.shuffle(quesList.subList(10, 19));
             Collections.shuffle(quesList.subList(20, 29));
@@ -97,36 +97,36 @@ public class Quiz extends Activity {
 
                         switch (modulo) {
                             case 1:
-                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                cursor = CRUD.carregarDadoById(codigo);
                                 mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
                                 mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                                 mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                                 T = (percTemp + mod2 + mod3 + mod4) / 4;
-                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "2", Integer.toString(percTemp), null, null, null, Integer.toString(T));
+                                CRUD.alterarRegistro(codigo, null, "2", Integer.toString(percTemp), null, null, null, Integer.toString(T));
                                 break;
                             case 2:
-                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                cursor = CRUD.carregarDadoById(codigo);
                                 mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                                 mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                                 mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                                 T = (mod1 + percTemp + mod3 + mod4) / 4;
-                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "3", null, Integer.toString(percTemp), null, null, Integer.toString(T));
+                                CRUD.alterarRegistro(codigo, null, "3", null, Integer.toString(percTemp), null, null, Integer.toString(T));
                                 break;
                             case 3:
-                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                cursor = CRUD.carregarDadoById(codigo);
                                 mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                                 mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
                                 mod4 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD4));
                                 T = (mod1 + mod2 + percTemp + mod4) / 4;
-                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "4", null, null, Integer.toString(percTemp), null, Integer.toString(T));
+                                CRUD.alterarRegistro(codigo, null, "4", null, null, Integer.toString(percTemp), null, Integer.toString(T));
                                 break;
                             case 4:
-                                cursor = Banco.carregarDadoById(Integer.parseInt(codigo));
+                                cursor = CRUD.carregarDadoById(codigo);
                                 mod1 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD1));
                                 mod2 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD2));
                                 mod3 = cursor.getInt(cursor.getColumnIndexOrThrow(CriarBanco.MOD3));
                                 T = (mod1 + mod2 + mod3 + percTemp) / 4;
-                                Banco.alterarRegistro(Integer.parseInt(codigo), null, "0", null, null, null, Integer.toString(percTemp), Integer.toString(T));
+                                CRUD.alterarRegistro(codigo, null, "0", null, null, null, Integer.toString(percTemp), Integer.toString(T));
                                 break;
                         }
 

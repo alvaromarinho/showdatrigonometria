@@ -28,12 +28,12 @@ public class CriarBanco extends SQLiteOpenHelper{
     private static final String sql = "CREATE TABLE IF NOT EXISTS " + TABELA + " (" +
             ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             NOME + " TEXT, " +
-            MODULO + " INTERGER, " +
-            MOD1 + " INTERGER, " +
-            MOD2 + " INTERGER, " +
-            MOD3 + " INTERGER, " +
-            MOD4 + " INTERGER, " +
-            TOTAL + " INTERGER); ";
+            MODULO + " TEXT, " +
+            MOD1 + " TEXT, " +
+            MOD2 + " TEXT, " +
+            MOD3 + " TEXT, " +
+            MOD4 + " TEXT, " +
+            TOTAL + " TEXT); ";
 
     private static final String sql2 = "CREATE TABLE IF NOT EXISTS " + TABELA2 + " (" +
             ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

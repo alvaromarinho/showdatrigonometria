@@ -20,9 +20,9 @@ public class Cadastrar extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
+        CRUD = new ManipulaBanco(getBaseContext());
         Bt_cadastrar = (Button)findViewById(R.id.bt_cadastrar);
         Bt_voltar = (Button)findViewById(R.id.bt_voltar);
-        CRUD = new ManipulaBanco(getBaseContext());
         ET_usuario = (EditText)findViewById(R.id.editTextUsuario);
 
         Bt_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class Cadastrar extends AppCompatActivity  {
         Bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
             }
         });
     }

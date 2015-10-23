@@ -20,9 +20,9 @@ public class ManipulaBanco {
 
     public Cursor carregarDados(){
         Cursor cursor;
-        String[] campos =  {CriarBanco.ID, CriarBanco.NOME, CriarBanco.MODULO, CriarBanco.MOD1, CriarBanco.MOD2, CriarBanco.MOD3, CriarBanco.MOD4, CriarBanco.TOTAL};
+        String[] campos =  {banco.ID, banco.NOME, banco.MODULO, banco.MOD1, banco.MOD2, banco.MOD3, banco.MOD4, banco.TOTAL};
         db = banco.getReadableDatabase();
-        cursor = db.query(CriarBanco.TABELA, campos, null, null, null, null, null);
+        cursor = db.query(banco.TABELA, campos, null, null, null, null, null);
 
         if(cursor!=null){
             cursor.moveToFirst();
@@ -33,19 +33,10 @@ public class ManipulaBanco {
 
     public Cursor carregarDadoById(int id){
         Cursor cursor;
-        String[] campos = {
-                banco.ID,
-                banco.NOME,
-                banco.MODULO,
-                banco.MOD1,
-                banco.MOD2,
-                banco.MOD3,
-                banco.MOD4,
-                banco.TOTAL
-        };
-        String where = CriarBanco.ID + "=" + id;
+        String[] campos =  {banco.ID, banco.NOME, banco.MODULO, banco.MOD1, banco.MOD2, banco.MOD3, banco.MOD4, banco.TOTAL};
+        String where = banco.ID + "=" + id;
         db = banco.getReadableDatabase();
-        cursor = db.query(CriarBanco.TABELA,campos,where, null, null, null, null, null);
+        cursor = db.query(banco.TABELA,campos,where, null, null, null, null, null);
 
         if(cursor!=null){
             cursor.moveToFirst();
@@ -54,8 +45,7 @@ public class ManipulaBanco {
         return cursor;
     }
 
-    public String inserirRegistro(String nome, String modulo,
-                                  String mod1, String mod2, String mod3, String mod4, String total){
+    public String inserirRegistro(String nome, String modulo, String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         long resultado;
 
@@ -78,14 +68,13 @@ public class ManipulaBanco {
             return "Registro inserido com sucesso";
     }
 
-    public void alterarRegistro(int id, String nome, String modulo,
-                                String mod1, String mod2, String mod3, String mod4, String total){
+    public void alterarRegistro(int id, String nome, String modulo, String mod1, String mod2, String mod3, String mod4, String total){
         ContentValues valores;
         String where;
 
         db = banco.getWritableDatabase();
 
-        where = CriarBanco.ID + "=" + id;
+        where = banco.ID + "=" + id;
 
         valores = new ContentValues();
 
@@ -97,19 +86,19 @@ public class ManipulaBanco {
         if (mod4 != null) valores.put(banco.MOD4, mod4);
         if (total != null) valores.put(banco.TOTAL, total);
 
-        db.update(CriarBanco.TABELA,valores,where,null);
+        db.update(banco.TABELA,valores,where,null);
     }
 
     public void deletarRegistro(int id){
-        String where = CriarBanco.ID + "=" + id;
+        String where = banco.ID + "=" + id;
         db = banco.getReadableDatabase();
-        db.delete(CriarBanco.TABELA, where, null);
+        db.delete(banco.TABELA, where, null);
     }
 
     public void addQuestao() {
 
         db = banco.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT count(*) FROM " + CriarBanco.TABELA2, null);
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM " + banco.TABELA2, null);
         if (cursor != null) {
             cursor.moveToFirst();
             if (cursor.getInt(0) == 0) {
